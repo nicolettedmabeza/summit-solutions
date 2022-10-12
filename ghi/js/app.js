@@ -1,30 +1,51 @@
 function createCard(name, location, description, pictureUrl, starts, ends) {
     return `
-    <div class="col ">
-      <div class="card h-100 shadow-sm mb-5">
+    <div class="col">
+      <div class="card h-100 shadow-lg mb-5">
         <img src="${pictureUrl}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${name}</h5>
           <h6 class="card-subtitle mb-2 text-muted">${location}</h6>
           <p class="card-text">${description}</p>
+          <a href="#" class="btn btn-primary">Conference Details</a>
         </div>
         <div class="card-footer">
             ${starts} - ${ends}
         </div>
       </div>
+
+
+
     </div>
     `;
   }
 
+  function alertComponent() {
+    return `
+
+    <div class="alert alert-primary" role="alert">
+    Something's going wrong!
+    </div>
+
+    `
+  }
+
   window.addEventListener('DOMContentLoaded', async () => {
 
+
     const url = 'http://localhost:8000/api/conferences/';
+
 
     try {
       const response = await fetch(url);
 
       if (!response.ok) {
-        // Figure out what to do when the response is bad
+
+        const newHTML = alertComponent()
+        const somethingWrong = document.querySelector('.container')
+        console.log(somethingWrong)
+        somethingWrong.innerHTML = newHTML;
+
       } else {
         const data = await response.json();
 
@@ -58,6 +79,12 @@ function createCard(name, location, description, pictureUrl, starts, ends) {
       }
     } catch (e) {
         console.error("You got an error!");
+        // alert("Hello! I am an alert box!!");
+
+        const newHTML = alertComponent()
+        const somethingWrong = document.querySelector('.container')
+        console.log(somethingWrong)
+        somethingWrong.innerHTML = newHTML;
       // Figure out what to do if an error is raised
     }
 
