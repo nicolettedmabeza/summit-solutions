@@ -9,8 +9,8 @@
 			rel="stylesheet"
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 			crossorigin="anonymous" />
-		<title>New Location :: Conference GO!</title>
-		<script type="module" src="js/new-location.js"></script>
+		<title>Login :: Conference GO!</title>
+		<script type="module" src="js/login.js"></script>
 		<script type="module" src="js/checkStatus.js"></script>
 	</head>
 	<body>
@@ -32,33 +32,6 @@
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
 								<a class="nav-link active" aria-current="page" href="/">Home</a>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link d-none"
-									id="newlocation"
-									aria-current="page"
-									href="new-location.html"
-									>New Location</a
-								>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link d-none"
-									id="newconference"
-									aria-current="page"
-									href="new-conference.html"
-									>New Conference</a
-								>
-							</li>
-							<li class="nav-item">
-								<a
-									class="nav-link d-none"
-									id="newpresentation"
-									aria-current="page"
-									href="new-presentation.html"
-									>New Presentation</a
-								>
 							</li>
 						</ul>
 						<form class="d-flex">
@@ -83,49 +56,38 @@
 				<div class="row">
 					<div class="offset-3 col-6">
 						<div class="shadow p-4 mt-4">
-							<h1>Create a new location</h1>
-							<form id="create-location-form">
+							<h1>Login</h1>
+							<form id="login-form">
 								<div class="form-floating mb-3">
 									<input
-										placeholder="Name"
+										placeholder="Username"
 										required
 										type="text"
-										name="name"
-										id="name"
+										name="username"
+										id="username"
 										class="form-control" />
-									<label for="name">Name</label>
+									<label for="username">Username</label>
 								</div>
 								<div class="form-floating mb-3">
 									<input
-										placeholder="Room count"
+										placeholder="Password"
 										required
-										type="number"
-										name="room_count"
-										id="room_count"
+										type="password"
+										name="password"
+										id="password"
 										class="form-control" />
-									<label for="room_count">Room count</label>
+									<label for="password">Password</label>
 								</div>
-								<div class="form-floating mb-3">
-									<input
-										placeholder="City"
-										required
-										type="text"
-										name="city"
-										id="city"
-										class="form-control" />
-									<label for="city">City</label>
-								</div>
-								<div class="mb-3">
-									<select required id="state" name="state" class="form-select">
-										<option selected value="">Choose a state</option>
-									</select>
-								</div>
-								<button class="btn btn-primary">Create</button>
+								<button class="btn btn-primary">Login</button>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</main>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"></script>
 	</body>
 </html>

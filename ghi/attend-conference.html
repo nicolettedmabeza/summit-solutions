@@ -11,6 +11,7 @@
 			crossorigin="anonymous" />
 		<title>Sign Up For A Conference :: Conference GO!</title>
 		<script type="module" src="js/attend-conference.js"></script>
+		<script type="module" src="js/checkStatus.js"></script>
 	</head>
 
 	<body class="bg-info">
@@ -35,15 +36,17 @@
 							</li>
 							<li class="nav-item">
 								<a
-									class="nav-link active"
+									class="nav-link active d-none"
+									id="newlocation"
 									aria-current="page"
 									href="new-location.html"
-									>New location</a
+									>New Location</a
 								>
 							</li>
 							<li class="nav-item">
 								<a
-									class="nav-link active"
+									class="nav-link d-none"
+									id="newconference"
 									aria-current="page"
 									href="new-conference.html"
 									>New Conference</a
@@ -51,10 +54,11 @@
 							</li>
 							<li class="nav-item">
 								<a
-									class="nav-link active"
+									class="nav-link d-none"
+									id="newpresentation"
 									aria-current="page"
 									href="new-presentation.html"
-									>New presentation</a
+									>New Presentation</a
 								>
 							</li>
 						</ul>
