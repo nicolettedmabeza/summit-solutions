@@ -26,8 +26,7 @@ function Nav() {
 									id="newlocation"
 									aria-current="page"
 									href="new-location.html"
-									>New Location</a
-								>
+									>New Location</a>
 							</li>
 							<li className="nav-item">
 								<a
@@ -35,8 +34,7 @@ function Nav() {
 									id="newconference"
 									aria-current="page"
 									href="new-conference.html"
-									>New Conference</a
-								>
+									>New Conference</a>
 							</li>
 							<li className="nav-item">
 								<a
@@ -44,8 +42,7 @@ function Nav() {
 									id="newpresentation"
 									aria-current="page"
 									href="new-presentation.html"
-									>New Presentation</a
-								>
+									>New Presentation</a>
 							</li>
 						</ul>
 						<form className="d-flex">
@@ -58,8 +55,7 @@ function Nav() {
 								Search
 							</button>
 							<a className="btn btn-primary" href="attend-conference.html"
-								>Attend!</a
-							>
+								>Attend!</a>
 						</form>
 					</div>
 				</div>
