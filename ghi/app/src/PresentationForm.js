@@ -57,7 +57,7 @@ const PresentationForm = () => {
 		if (response.ok) {
 			const newAttendee = await response.json();
 			console.log(newAttendee);
-
+			event.target.reset();
 			setName("");
 			setEmail("");
 			setCompany("");

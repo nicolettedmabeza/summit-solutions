@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "./Nav";
 import AttendeesList from "./AttendeesList";
+import MainPage from "./MainPage";
 import LocationForm from "./LocationForm";
 import ConferenceForm from "./ConferenceForm";
 import AttendeeForm from "./AttendeeForm";
@@ -19,15 +20,23 @@ function App(props) {
 			<Nav />
 			{/* <div className="container"> */}
 			<Routes>
-				{/* <Route index element={<MainPage />} /> */}
-				<Route path="conferences/new" element={<ConferenceForm />} />
-				<Route path="attendees/new" element={<AttendeeForm />} />
-				<Route path="locations/new" element={<LocationForm />} />
-				<Route
-					path="attendees"
-					element={<AttendeesList attendees={props.attendees} />}
-				/>
-				<Route path="presentations/new" element={<PresentationForm />} />
+				<Route index element={<MainPage />} />
+				<Route path="conferences">
+					<Route path="new" element={<ConferenceForm />} />
+				</Route>
+				<Route path="attendees">
+					<Route
+						path=""
+						element={<AttendeesList attendees={props.attendees} />}
+					/>
+					<Route path="new" element={<AttendeeForm />} />
+				</Route>
+				<Route path="locations">
+					<Route path="new" element={<LocationForm />} />
+				</Route>
+				<Route path="presentations">
+					<Route path="new" element={<PresentationForm />} />
+				</Route>
 			</Routes>
 
 			{/* </div> */}
