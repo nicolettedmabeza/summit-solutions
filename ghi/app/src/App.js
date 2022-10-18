@@ -1,34 +1,38 @@
-import React from 'react';
-import Nav from './Nav';
-import AttendeesList from './AttendeesList';
-import LocationForm from './LocationForm';
-import ConferenceForm from './ConferenceForm';
-import AttendeeForm from './AttendeeForm';
-import TestAttendeeForm from './TestAttendeeForm';
+import React from "react";
+import Nav from "./Nav";
+import AttendeesList from "./AttendeesList";
+import LocationForm from "./LocationForm";
+import ConferenceForm from "./ConferenceForm";
+import AttendeeForm from "./AttendeeForm";
+import PresentationForm from "./PresentationForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App(props) {
-  // a component is a function in React that return JSX
-  //props has attendees property
+	// a component is a function in React that return JSX
+	//props has attendees property
 
+	if (props.attendees === undefined) {
+		return null;
+	}
+	return (
+		<BrowserRouter>
+			<Nav />
+			{/* <div className="container"> */}
+			<Routes>
+				{/* <Route index element={<MainPage />} /> */}
+				<Route path="conferences/new" element={<ConferenceForm />} />
+				<Route path="attendees/new" element={<AttendeeForm />} />
+				<Route path="locations/new" element={<LocationForm />} />
+				<Route
+					path="attendees"
+					element={<AttendeesList attendees={props.attendees} />}
+				/>
+				<Route path="presentations/new" element={<PresentationForm />} />
+			</Routes>
 
-  if (props.attendees === undefined) {
-    return null;
-  }
-  return (
-
-    <React.Fragment>
-    <Nav />
-
-    <div className="container">
-    {/* <LocationForm/> */}
-    {/* <AttendeesList attendees={props.attendees}/> */}
-    {/* <ConferenceForm/> */}
-    {/* <AttendeeForm/> */}
-    <TestAttendeeForm/>
-    </div>
-  </React.Fragment>
-  )
-
+			{/* </div> */}
+		</BrowserRouter>
+	);
 }
 
 export default App;
