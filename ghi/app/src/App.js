@@ -4,6 +4,7 @@ import AttendeesList from './AttendeesList';
 import LocationForm from './LocationForm';
 import ConferenceForm from './ConferenceForm';
 import AttendeeForm from './AttendeeForm';
+import TestAttendeeForm from './TestAttendeeForm';
 
 function App(props) {
   // a component is a function in React that return JSX
@@ -22,7 +23,8 @@ function App(props) {
     {/* <LocationForm/> */}
     {/* <AttendeesList attendees={props.attendees}/> */}
     {/* <ConferenceForm/> */}
-    <AttendeeForm/>
+    {/* <AttendeeForm/> */}
+    <TestAttendeeForm/>
     </div>
   </React.Fragment>
   )

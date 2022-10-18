@@ -1,52 +1,40 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 
-class AttendeeForm extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: '',
-            email: '',
-            conferences:[],
-            valid: false,
-        }
+const TestAttendeeForm = () => {
+    const [name, setNames] = useState('')
+    const [email,setEmails] = useState('')
+    const [conferences, setConferences] = useState([])
+    const [selectedConference, setSelectedConference] = useState('')
+    const [submitted, setSubmitted] = useState(false);
+    const [loaded, setLoaded] = useState(false)
 
+    useEffect(() => {
 
+    const fetchConferences = async () => {
+        const url = "http://localhost:8000/api/conferences/"
+        const response = await fetch(url);
 
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleConferenceChange = this.handleConferenceChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        if (response. ok) {
+        const data = await response.json();
+        console.log(data)
+        setConferences(data.conferences)
 
+        };
     }
+        fetchConferences();
+        setLoaded(true)
+    },[]);
 
-    handleNameChange(event) {
-        const value = event.target.value;
-        this.setState({name:value})
-    }
-
-    handleEmailChange(event) {
-        const value = event.target.value;
-        this.setState({email:value})
-    }
-
-    handleConferenceChange(event) {
-        const value = event.target.value;
-        this.setState({conference:value})
-    }
-
-
-
-
-
-    async handleSubmit(event) {
+    const handleSubmit = async (event) => {
 
         event.preventDefault();
-        const data = {...this.state};
+        const data = {name, email, selectedConference};
+        data.conference = data.selectedConference
 
-        delete data.conferences;
-        delete data.valid;
-        //Then, we're deleting the keys 'roomCount' and 'states' because I'm guessing we don't want to send that data to the server.
-        console.log(data);
+
+        delete data.selectedConference
+
+        console.log(data)
 
         const attendeeUrl = 'http://localhost:8001/api/attendees/';
         const fetchConfig = {
@@ -61,61 +49,17 @@ class AttendeeForm extends React.Component {
           const newAttendee = await response.json();
           console.log(newAttendee);
 
-          const cleared = {
-            name: '',
-            email: '',
-            conference: '',
-            valid: true,
-          }
-          this.setState(cleared)
-
-
-
+          setNames('')
+          setEmails('')
+          setSelectedConference('')
+          setSubmitted(true)
 
         }
       }
 
 
-
-    async componentDidMount() {
-
-        const url = "http://localhost:8000/api/conferences/"
-        const response = await fetch(url);
-
-    if (response.ok) {
-
-        const data = await response.json();
-        console.log(data)
-
-        this.setState({conferences:data.conferences})
-
-
-        //if you want to use a method in the classNameName as an event handler, you have to do that 'bind' thing in the constructor."
-
-        }
-    }
-render () {
-
-        let spinnerClasses = 'd-flex justify-content-center mb-3';
-        let dropdownClasses = 'form-select d-none';
-        let alertClasses = 'alert alert-success d-none mb-0'
-        let formClasses = 'attendee-form'
-
-
-        if (this.state.conferences.length > 0) {
-        spinnerClasses = 'd-flex justify-content-center mb-3 d-none';
-        dropdownClasses = 'form-select';
-        }
-
-        if (this.state.valid) {
-            alertClasses = "alert alert-success mb-0"
-            formClasses = "attendee-form d-none"
-        }
-
-        return (
-
-
-            <div className="row">
+    return (
+        <div className="row">
             <div className="col col-sm-auto">
                 <img
                     width="300"
@@ -125,29 +69,31 @@ render () {
             <div className="col">
                 <div className="card shadow">
                     <div className="card-body">
-                        <div className={formClasses}>
-                        <form id="create-attendee-form" onSubmit={this.handleSubmit}>
+                        <div className='attendee-form'>
+                        {!(submitted) && (<form id="create-attendee-form" onSubmit={handleSubmit}>
                             <h1 className="card-title">It's Conference Time!</h1>
                             <p className="mb-3">
                                 Please choose which conference you'd like to attend.
                             </p>
+                            {!(loaded) && (
                             <div
-                                className={spinnerClasses}
-                                id="loading-conference-spinner">
+                                className='d-flex justify-content-center mb-3'
+                                id="loading-conference-spinner"
+                                >
                                 <div className="spinner-grow text-secondary" role="status">
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
-                            </div>
+                            </div>)}
                             <div className="mb-3">
                                 <select
-                                    onChange={this.handleConferenceChange}
+                                    onChange={(e) => setSelectedConference(e.target.value) }
                                     name="conference"
                                     id="conference"
-                                    className={dropdownClasses}
+                                    className='form-select'
                                     required>
-                                    <option value={this.state.conference}>Choose a conference</option>
+                                    <option value="test">Choose a conference</option>
 
-                                {this.state.conferences.map(conference => {
+                                    {conferences.map(conference => {
                                     return (
                                         <option key={conference.id} value={conference.href}>
                                             {conference.name}
@@ -161,7 +107,7 @@ render () {
                                 <div className="col">
                                     <div className="form-floating mb-3">
                                         <input
-                                            onChange={this.handleNameChange}
+                                             onChange={(e) => setNames(e.target.value)}
                                             required
                                             placeholder="Your full name"
                                             type="text"
@@ -174,7 +120,7 @@ render () {
                                 <div className="col">
                                     <div className="form-floating mb-3">
                                         <input
-                                            onChange={this.handleEmailChange}
+                                            onChange={(e) => setEmails(e.target.value)}
                                             required
                                             placeholder="Your email address"
                                             type="email"
@@ -186,22 +132,22 @@ render () {
                                 </div>
                             </div>
                             <button className="btn btn-lg btn-primary">I'm going!</button>
-                        </form>
+                        </form>)}
                         </div>
+                        {submitted && (
                         <div
-                            className={alertClasses}
+                            className='alert alert-success mb-0'
                             id="success-message">
                             Congratulations! You're all signed up!
                         </div>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
 
 
-
-        )
-    }
+    )
 }
 
-export default AttendeeForm;
+export default TestAttendeeForm
