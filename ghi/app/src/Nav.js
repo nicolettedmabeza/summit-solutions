@@ -7,7 +7,7 @@ function Nav() {
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
 				<div className="container-fluid">
 					<NavLink to="" className="navbar-brand" href="#">
-						Conference GO!
+						Summit Solutions
 					</NavLink>
 					<button
 						className="navbar-toggler"

@@ -92,18 +92,18 @@ class MainPage extends React.Component {
 	render() {
 		return (
 			<>
-				<div className="px-4 py-5 my-5 mt-0 text-center bg-info">
+				<div className="px-4 py-5 my-5 mt-0 text-center bg-white">
 					<img
 						className="bg-white rounded shadow d-block mx-auto mb-4"
-						src="/logo.svg"
+						src="./assets/SummitSolutionsLogo.png"
 						alt=""
 						width="600"
 					/>
-					<h1 className="display-5 fw-bold">Conference GO!</h1>
+					<h1 className="display-5 fw-bold">Summit Solutions</h1>
 					<div className="col-lg-6 mx-auto">
 						<p className="lead mb-4">
 							The only resource you'll ever need to plan an run your in-person
-							or virtual conference for thousands of attendees and presenters.
+							or virtual conference for thousands of attendees and presenters
 						</p>
 						<div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
 							<Link
